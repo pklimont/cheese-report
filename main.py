@@ -20,6 +20,18 @@ class Cart:
     def get_products(self) -> List[Product]:
         return self.products
 
+class ReportGenerator:
+    def generate(self,cart:Cart) -> str:
+        lines = ["RAPORT ZAKUPÓW SERÓW: \n"]
+
+        for p in cart.get_products():
+            lines.append(f"{p.name:15} {p.quantity_kg:.2f} kg * {p.price_per_kg:.2f} zł = {p.total_price():.2f} zł")
+
+        lines.append(f"\nŁĄCZNA KWOTA: {cart.total():.2f} zł")
+        return "\n".join(lines)
+
+
+
 
 
 
@@ -34,8 +46,18 @@ products = [
     Product("Ser owczy", 122.32),
 ]
 
+
+
 cart = Cart(products)
-print(cart.total())
+report = ReportGenerator().generate(cart)
+
+print(report)
+
+
+
+
+
+
 
 
 
