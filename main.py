@@ -1,3 +1,4 @@
+from typing import List
 
 
 class Product:
@@ -6,8 +7,19 @@ class Product:
         self.price_per_kg = price_per_kg
         self.quantity_kg = quantity_kg
 
-        def total_price() -> float:
+    def total_price(self) -> float:
             return self.price_per_kg * self.quantity_kg
+
+class Cart:
+    def __init__(self, products: List[Product]):
+        self.products = products
+
+    def total(self) -> float:
+        return sum(p.total_price() for p in self.products)
+
+    def get_products(self) -> List[Product]:
+        return self.products
+
 
 
 
@@ -22,8 +34,8 @@ products = [
     Product("Ser owczy", 122.32),
 ]
 
-for product in products:
-    print(product.name, product.price_per_kg, product.quantity_kg)
+cart = Cart(products)
+print(cart.total())
 
 
 
