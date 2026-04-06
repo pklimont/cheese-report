@@ -14,3 +14,4 @@ class ReportGenerator:
 
         lines.append(f"\nŁĄCZNA KWOTA: {cart.total():.2f} zł")
         return "\n".join(lines)
+
